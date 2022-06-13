@@ -146,7 +146,7 @@ if __name__ == '__main__':
                             # st.image(str(Path(f'{get_detection_folder()}') / img))
                             pass
                         
-                    for t in os.listdir(get_detection_folder().split('\\')[-1], 'labels'):
+                    for t in os.listdir(os.path.join(get_detection_folder().split('\\')[-1], 'labels')):
                         # with open(str(Path(f'{get_detection_folder()}') /'labels'/ t)) as f:
                         #     for l in f:
                         #         st.write(l)
