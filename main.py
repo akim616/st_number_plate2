@@ -65,7 +65,7 @@ def blurred_img(img_path, coors):
 
 if __name__ == '__main__':
 
-    st.title('YOLOv5 Streamlit App')
+    st.title('Car Number Plate Blurring')
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str,
