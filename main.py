@@ -144,7 +144,7 @@ if __name__ == '__main__':
                     for img in os.listdir(get_detection_folder()):
                             pass
                     
-                    if len(os.listdir(os.path.join('runs','detect', get_detection_folder().split('\\')[-1], 'labels')))!=0:
+                    if len(os.listdir(os.path.join(get_detection_folder().split('\\')[-1], 'labels')))!=0:
                         for t in os.listdir(os.path.join('runs','detect', get_detection_folder().split('\\')[-1], 'labels')):
                             st.write(read_txt_boundries(str(Path(f'{get_detection_folder()}') /'labels'/ t)))
                             st.image(blurred_img(opt.source, read_txt_boundries(str(Path(f'{get_detection_folder()}') /'labels'/ t))), width=600)
