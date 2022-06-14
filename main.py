@@ -65,7 +65,7 @@ def blurred_img(img_path, coors):
 
 if __name__ == '__main__':
 
-    st.title('Car Number Plate Blurring')
+    st.title('YOLOv5 Streamlit App')
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str,
@@ -142,17 +142,14 @@ if __name__ == '__main__':
             if source_index == 0:
                 with st.spinner(text='Preparing Images'):
                     for img in os.listdir(get_detection_folder()):
-                        if img!='labels':
-                            # st.image(str(Path(f'{get_detection_folder()}') / img))
                             pass
-                        
-                    for t in os.listdir(os.path.join(get_detection_folder().split('\\')[-1], 'labels')):
-                        # with open(str(Path(f'{get_detection_folder()}') /'labels'/ t)) as f:
-                        #     for l in f:
-                        #         st.write(l)
-                        st.write(read_txt_boundries(str(Path(f'{get_detection_folder()}') /'labels'/ t)))
-#                     st.balloons()
-                st.image(blurred_img(opt.source, read_txt_boundries(str(Path(f'{get_detection_folder()}') /'labels'/ t))))
+                    
+                    if len(os.listdir(os.path.join('runs','detect', get_detection_folder().split('\\')[-1], 'labels')))!=0:
+                        for t in os.listdir(os.path.join('runs','detect', get_detection_folder().split('\\')[-1], 'labels')):
+                            st.write(read_txt_boundries(str(Path(f'{get_detection_folder()}') /'labels'/ t)))
+                            st.image(blurred_img(opt.source, read_txt_boundries(str(Path(f'{get_detection_folder()}') /'labels'/ t))), width=600)
+                    else:
+                        st.image(str(Path(f'{get_detection_folder()}') / img), width=600)
             else:
                 with st.spinner(text='Preparing Video'):
                     for vid in os.listdir(get_detection_folder()):
